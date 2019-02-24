@@ -84,7 +84,7 @@ uint16_t counter;
 
  #define NUM_CHN 16
  // Servo data
- uint16_t Channel_data[NUM_CHN];
+ extern uint16_t Channel_data[NUM_CHN];
  uint8_t  Channel_AUX;
  #ifdef FAILSAFE_ENABLE
  	uint16_t Failsafe_data[NUM_CHN];

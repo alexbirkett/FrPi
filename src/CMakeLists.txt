@@ -8,7 +8,10 @@ add_executable(
         FrSkyV_cc2500.c
         FrSkyX_cc2500.c
         Common.c
+        joystick.c
 )
+
+add_executable(joystick joystick_test.c joystick.c)
 
 target_link_libraries(frpi wiringPi)
 

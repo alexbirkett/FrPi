@@ -19,6 +19,7 @@
 #include "CC2500_SPI.h"
 #include "Multiprotocol.h"
 #include "Common.h"
+#include "printf.h"
 
 const uint8_t FRSKYD_cc2500_conf[] = {
 /*02_IOCFG0*/     0x06,
@@ -58,7 +59,7 @@ static void __attribute__((unused)) frsky2way_init(uint8_t bind)
 
 static void __attribute__((unused)) frsky2way_build_bind_packet()
 {
-    printf("frsky2way_build_bind_packet\r\n");
+   // printf("frsky2way_build_bind_packet\r\n");
     //11 03 01 d7 2d 00 00 1e 3c 5b 78 00 00 00 00 00 00 01
     //11 03 01 19 3e 00 02 8e 2f bb 5c 00 00 00 00 00 00 01
     packet[0] = 0x11;
@@ -84,7 +85,7 @@ static void __attribute__((unused)) frsky2way_build_bind_packet()
 
 static void __attribute__((unused)) frsky2way_data_frame()
 {
-    printf("frsky2way_data_frame\r\n");
+    //printf("frsky2way_data_frame\r\n");
     //pachet[4] is telemetry user frame counter(hub)
     //11 d7 2d 22 00 01 c9 c9 ca ca 88 88 ca ca c9 ca 88 88
     //11 57 12 00 00 01 f2 f2 f2 f2 06 06 ca ca ca ca 18 18
@@ -138,8 +139,9 @@ uint16_t initFrSky_2way()
 
 uint16_t ReadFrSky_2way()
 {
-    printf("ReadFrSky_2way\r\n");
+    //printf("ReadFrSky_2way %d\r\n", state);
     if (state < FRSKY_BIND_DONE) {
+        //printf("bind\r\n");
         frsky2way_build_bind_packet();
         CC2500_Strobe(CC2500_SIDLE);
         CC2500_WriteReg(CC2500_0A_CHANNR, 0x00);

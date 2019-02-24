@@ -187,6 +187,7 @@ void CC2500_SetPower() {
     if (IS_RANGE_FLAG_on)
         power = CC2500_RANGE_POWER;
     if (prev_power != power) {
+        printf("power %d\n\r", power);
         CC2500_WriteReg(CC2500_3E_PATABLE, power);
         prev_power = power;
     }
